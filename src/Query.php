@@ -71,8 +71,12 @@ class Query {
 	 * @param $currency
 	 */
 	public function setToCurrency( $currency ) {
-		if ( $this->codes->isValid( $currency ) ) {
-			$this->toCurrency = $currency;
+		if ( $currency ) {
+			if ( $this->codes->isValid( $currency ) ) {
+				$this->toCurrency = $currency;
+			} else {
+				throw new \Exception( "Not a valid currency for Diva!" );
+			}
 		}
 	}
 
@@ -88,10 +92,12 @@ class Query {
 	 * @param string $currency
 	 */
 	public function setFromCurrency( $currency ) {
-		if ( $this->codes->isValid( $currency ) ) {
-			$this->fromCurrency = $currency;
-		}else{
-			throw new \Exception("Not a valid currency for Diva!");
+		if ( $currency ) {
+			if ( $this->codes->isValid( $currency ) ) {
+				$this->fromCurrency = $currency;
+			} else {
+				throw new \Exception( "Not a valid currency for Diva!" );
+			}
 		}
 	}
 
@@ -125,7 +131,12 @@ class Query {
 
 
 		$this->url    = $url;
-		$this->params = "apikey=" . Auth::getApiKey() . "&from=" . $finalFromCurrency . "&to=" . $finalToCurrency;
+		$this->params = array(
+			'apikey' => Auth::getApiKey(),
+			'from'   => $finalFromCurrency,
+			'to'     => $finalToCurrency
+		);
+
 
 		return $this;
 	}
@@ -138,7 +149,7 @@ class Query {
 		$this->buildQuery( $fromCurrency, $toCurrency );
 		$url           = $this->getUrl();
 		$params        = $this->getParams();
-		$rawData       = $this->curl( $url, $params );
+		$rawData       = $this->curl( $url, $params, null, 180, 1, 3, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)', false );
 		$this->rawData = $rawData;
 
 		return $this;
