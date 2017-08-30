@@ -4,7 +4,7 @@ namespace DivaExchangeRates;
 
 /**
  * Class Rate
- * @package ExchangeRates
+ * @package DivaExchangeRates
  */
 class Rate {
 	protected $query;

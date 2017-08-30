@@ -3,7 +3,7 @@ namespace DivaExchangeRates;
 
 /**
  * Class CurrencyCodes
- * @package ExchangeRates
+ * @package DivaExchangeRates
  */
 class CurrencyCodes
 {

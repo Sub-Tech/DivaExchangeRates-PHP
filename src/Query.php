@@ -4,7 +4,7 @@ namespace DivaExchangeRates;
 
 /**
  * Class Query
- * @package ExchangeRates
+ * @package DivaExchangeRates
  */
 class Query {
 

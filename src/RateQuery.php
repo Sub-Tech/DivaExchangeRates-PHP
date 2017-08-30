@@ -1,10 +1,9 @@
 <?php
-
 namespace DivaExchangeRates;
 
 /**
  * Class RateQuery
- * @package ExchangeRates
+ * @package DivaExchangeRates
  */
 class RateQuery extends Rate
 {

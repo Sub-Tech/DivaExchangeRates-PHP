@@ -3,7 +3,7 @@
 namespace DivaExchangeRates;
 /**
  * Class Conversion
- * @package ExchangeRates
+ * @package DivaExchangeRates
  */
 class Conversion
 {
