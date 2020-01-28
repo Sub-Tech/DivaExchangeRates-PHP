@@ -127,9 +127,7 @@ class Query {
 				$finalToCurrency = $toCurrencyDefault;
 			}
 		}
-		$url = 'http://diva.stechga.co.uk/api/currency/exchange_rate';
-
-
+		$url          = 'https://diva.stechga.co.uk/api/currency/exchange_rate';
 		$this->url    = $url;
 		$this->params = array(
 			'apikey' => Auth::getApiKey(),
