@@ -14,9 +14,18 @@ class RateQuery extends Rate
     {
       
         $this->query = new Query();
-        $this->data = $this->query->execute($fromCurrency, $toCurrency)->getData();
-        if (!$this->data) {
-            throw new \Exception('No Exchange Rate Data Received!');
-        }
+        $data = $this->query->execute($fromCurrency, $toCurrency)->getData();
+
+	    if (!$data) {
+		    $this->data = null;
+		    throw new \Exception('No Exchange Rate Data Received!');
+	    }
+
+	    if( !isset($data->status) || $data->status != "ok"){
+		    $this->data = null;
+		    throw new \Exception('Error in received exchange rate data');
+	    }
+
+	    $this->data = $data;
     }
 }

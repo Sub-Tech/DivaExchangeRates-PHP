@@ -63,8 +63,11 @@ class Conversion
         if (!$cachedRateData) {
             try {
                 $this->rateQuery = new RateQuery($fromCurrency, $toCurrency);
-                $this->cache->saveToCache($cacheFilename, $this->rateQuery->getData());
-                $cachedRateData = $this->rateQuery->getData();
+	            $rateData = $this->rateQuery->getData();
+	            if($rateData){
+                    $this->cache->saveToCache($cacheFilename, $rateData);
+	            }
+                $cachedRateData = $rateData;
             } catch (\Exception $e) {
                 if ($old == false) {
                     return $this->init($fromCurrency, $toCurrency, $value, $ttl, true);
