@@ -23,7 +23,8 @@ class RateQuery extends Rate
 
 	    if( !isset($data->status) || $data->status != "ok"){
 		    $this->data = null;
-		    throw new \Exception('Error in received exchange rate data');
+		    $message    = 'Error in received exchange rate data - ' . var_export($data,true);
+		    throw new \Exception( $message );
 	    }
 
 	    $this->data = $data;
